@@ -1,19 +1,19 @@
-# Word2Vec from Scratch
+# Word2Vec 
 
 A pure NumPy implementation of Word2Vec using the **Skip-gram** model with **Negative Sampling (SGNS)**, trained on a custom text corpus.
 
 ## Overview
 
-This project trains word embeddings from scratch — no deep learning frameworks. Given a corpus of text, the model learns dense vector representations of words such that semantically similar words end up close together in the embedding space.
+This project trains word embeddings from scratch - no deep learning frameworks. Given a corpus of text, the model learns dense vector representations of words such that semantically similar words end up close together in the embedding space.
 
 ## How It Works
 
-The model uses the **Skip-gram objective**: for each center word in a sentence, predict its surrounding context words within a sliding window. Training uses **Negative Sampling** to make this efficient — rather than normalizing over the full vocabulary at each step, the model contrasts each positive (center, context) pair against a small number of randomly sampled "negative" words.
+The model uses the **Skip-gram objective**: for each center word in a sentence, predict its surrounding context words within a sliding window. Training uses **Negative Sampling** to make this efficient - rather than normalizing over the full vocabulary at each step, the model contrasts each positive (center, context) pair against a small number of randomly sampled "negative" words.
 
 ### Architecture
 
-- **Input embeddings** `W_in` — one vector per vocabulary word (the learned representations)
-- **Output embeddings** `W_out` — a second matrix used only during training
+- **Input embeddings** `W_in` - one vector per vocabulary word (the learned representations)
+- **Output embeddings** `W_out` - a second matrix used only during training
 - Both matrices are initialized with small random values and updated via gradient descent
 
 ### Loss Function
@@ -41,7 +41,7 @@ where `v_c` is the center word vector, `u_o` is the positive context vector, and
 |---|---|---|
 | `embedding_dim` | 100 | Size of each word vector |
 | `window_size` | 5 | Context window radius |
-| `epochs` | 1000 | Training passes over the corpus |
+| `epochs` | 300 | Training passes over the corpus |
 | `learning_rate` | 0.025 | SGD step size |
 | `num_negatives` | 10 | Negative samples per positive pair |
 | `min_count` | 3 | Minimum word frequency to include in vocabulary |
@@ -113,7 +113,7 @@ Nearest to: embeddings
   performance 0.169
 ```
 
-The results show the model has picked up meaningful semantic relationships — `neural` clusters with NLP/ML terminology, and `embeddings` associates closely with `word` and `words`, reflecting how the term is used in context.
+The results show the model has picked up meaningful semantic relationships - `neural` clusters with NLP/ML terminology, and `embeddings` associates closely with `word` and `words`, reflecting how the term is used in context.
 
 ## Notes
 
